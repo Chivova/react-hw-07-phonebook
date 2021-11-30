@@ -1,6 +1,9 @@
+import { Routes, Route } from 'react-router-dom';
 import Container from './components/Container';
-import { Switch, Route } from 'react-router-dom';
+
 import HomeView from './views/HomeView';
+import LoginView from './views/LoginView';
+
 // import { Toaster } from 'react-hot-toast';
 
 import 'modern-normalize/modern-normalize.css';
@@ -9,11 +12,13 @@ function App() {
   return (
     <Container>
       {/* <Toaster position="top-center" /> */}
-      <Switch>
-        <Route exact path="/">
+
+      <Routes>
+        {/* <Route path="/">
           <HomeView />
-        </Route>
-      </Switch>
+        </Route> */}
+        <Route exact path="/login" element={<LoginView />} />
+      </Routes>
     </Container>
   );
 }
