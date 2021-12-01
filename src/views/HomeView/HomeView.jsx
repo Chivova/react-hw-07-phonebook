@@ -17,7 +17,7 @@ const styles = {
 export default function HomeView() {
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>Contacts APP</h1>;
+      <h1 style={styles.title}>Contacts APP</h1>
     </div>
   );
 }
