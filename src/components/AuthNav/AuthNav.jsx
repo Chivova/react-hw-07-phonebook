@@ -1,4 +1,4 @@
-import AuthNav from 'components/AuthNav';
+import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const styles = {
@@ -13,21 +13,25 @@ const styles = {
     color: '#E84A5F',
   },
 };
-
-export default function Navigation() {
+export default function AuthNav() {
   return (
-    <nav>
-      <NavLink exact to="/" style={styles.link} activestyle={styles.activeLink}>
-        Home
-      </NavLink>
+    <div>
       <NavLink
-        exact
-        to="/contacts"
+        exat
+        to="/login"
         style={styles.link}
         activestyle={styles.activeLink}
       >
-        Contacts
+        Log In
       </NavLink>
-    </nav>
+      <NavLink
+        exat
+        to="/registration"
+        style={styles.link}
+        activestyle={styles.activeLink}
+      >
+        Registration
+      </NavLink>
+    </div>
   );
 }
