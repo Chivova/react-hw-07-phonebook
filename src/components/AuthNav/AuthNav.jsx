@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const styles = {
@@ -16,16 +15,10 @@ const styles = {
 export default function AuthNav() {
   return (
     <div>
-      <NavLink
-        exat
-        to="/login"
-        style={styles.link}
-        activestyle={styles.activeLink}
-      >
+      <NavLink to="/login" style={styles.link} activestyle={styles.activeLink}>
         Log In
       </NavLink>
       <NavLink
-        exat
         to="/registration"
         style={styles.link}
         activestyle={styles.activeLink}

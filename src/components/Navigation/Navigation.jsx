@@ -1,4 +1,3 @@
-import AuthNav from 'components/AuthNav';
 import { NavLink } from 'react-router-dom';
 
 const styles = {
@@ -17,11 +16,10 @@ const styles = {
 export default function Navigation() {
   return (
     <nav>
-      <NavLink exact to="/" style={styles.link} activestyle={styles.activeLink}>
+      <NavLink to="/" style={styles.link} activestyle={styles.activeLink}>
         Home
       </NavLink>
       <NavLink
-        exact
         to="/contacts"
         style={styles.link}
         activestyle={styles.activeLink}

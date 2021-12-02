@@ -1,3 +1,3 @@
 export default function ContactsView() {
-  return <div></div>;
+  return <div>Contacts</div>;
 }
