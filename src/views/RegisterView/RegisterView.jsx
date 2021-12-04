@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +12,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
 
 export default function RegisterView() {
+  const [userName, setUserName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+
   const handleSubmit = event => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
