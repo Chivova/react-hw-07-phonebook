@@ -42,8 +42,14 @@ export default function RegisterView() {
       email: userEmail,
       password: userPassword,
     };
-
+    reset();
     console.log(data);
+  };
+
+  const reset = () => {
+    setUserName('');
+    setUserEmail('');
+    setUserPassword('');
   };
 
   return (
