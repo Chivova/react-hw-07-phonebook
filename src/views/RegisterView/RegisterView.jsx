@@ -14,15 +14,36 @@ const theme = createTheme();
 export default function RegisterView() {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
+  const [userPassword, setUserPassword] = useState('');
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  const handleChange = e => {
+    const { value, name } = e.target;
+    switch (name) {
+      case 'name':
+        setUserName(value);
+        break;
+
+      case 'email':
+        setUserEmail(value);
+        break;
+      case 'password':
+        setUserPassword(value);
+        break;
+      default:
+        return;
+    }
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    const data = {
+      name: userName,
+      email: userEmail,
+      password: userPassword,
+    };
+
+    console.log(data);
   };
 
   return (
@@ -53,22 +74,27 @@ export default function RegisterView() {
                 <Grid item xs={12}>
                   <TextField
                     autoComplete="given-name"
-                    name="firstName"
+                    name="name"
                     required
                     fullWidth
                     id="firstName"
                     label="Name"
+                    onChange={handleChange}
+                    value={userName}
                     autoFocus
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
+                    type="email"
                     required
                     fullWidth
                     id="email"
                     label="Email Address"
                     name="email"
                     autoComplete="email"
+                    onChange={handleChange}
+                    value={userEmail}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -80,6 +106,8 @@ export default function RegisterView() {
                     type="password"
                     id="password"
                     autoComplete="new-password"
+                    onChange={handleChange}
+                    value={userPassword}
                   />
                 </Grid>
               </Grid>
