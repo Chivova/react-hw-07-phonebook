@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { authOperations } from '../../redux/auth';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
 
 export default function RegisterView() {
+  const dispatch = useDispatch();
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
@@ -37,13 +40,14 @@ export default function RegisterView() {
   const handleSubmit = e => {
     e.preventDefault();
 
-    const data = {
-      name: userName,
-      email: userEmail,
-      password: userPassword,
-    };
+    dispatch(
+      authOperations.registration({
+        name: userName,
+        email: userEmail,
+        password: userPassword,
+      }),
+    );
     reset();
-    console.log(data);
   };
 
   const reset = () => {
