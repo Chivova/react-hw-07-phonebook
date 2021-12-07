@@ -3,6 +3,15 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const BASE_URL = 'https://connections-api.herokuapp.com';
 
+const token = {
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    axios.defaults.headers.common.Authorization = '';
+  },
+};
+
 const registration = createAsyncThunk(
   'auth/registration',
   async credentials => {
@@ -11,10 +20,10 @@ const registration = createAsyncThunk(
         `${BASE_URL}/users/signup`,
         credentials,
       );
-      console.log('auth/registration', data);
+      token.set(data.token);
       return data;
     } catch (error) {}
   },
 );
 
-export default registration;
+export { registration };
