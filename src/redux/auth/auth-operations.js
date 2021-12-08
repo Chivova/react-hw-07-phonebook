@@ -26,4 +26,11 @@ const registration = createAsyncThunk(
   },
 );
 
-export { registration };
+const logIn = createAsyncThunk('auth/login', async credentials => {
+  try {
+    const { data } = await axios.post(`${BASE_URL}/users/login`, credentials);
+    token.set(data.token);
+    return data;
+  } catch (error) {}
+});
+export { registration, logIn };

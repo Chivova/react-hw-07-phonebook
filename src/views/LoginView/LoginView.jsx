@@ -1,4 +1,5 @@
-import * as React from 'react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -6,6 +7,7 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { authOperations } from '../../redux/auth';
 
 const theme = createTheme();
 const styles = {
@@ -13,15 +15,40 @@ const styles = {
     textAlign: 'centre',
   },
 };
+
 export default function LoginView() {
-  const handleSubmit = event => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  const dispatch = useDispatch();
+
+  const [userEmail, setUserEmail] = useState('');
+  const [userPassword, setUserPassword] = useState('');
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+
+    switch (name) {
+      case 'email':
+        setUserEmail(value);
+        return;
+      case 'password':
+        setUserPassword(value);
+        return;
+      default:
+        break;
+    }
+  };
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    dispatch(
+      authOperations.logIn({ email: userEmail, password: userPassword }),
+    );
+
+    reset();
+  };
+
+  const reset = () => {
+    setUserEmail('');
+    setUserPassword('');
   };
 
   return (
@@ -53,6 +80,8 @@ export default function LoginView() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={handleChange}
+              value={userEmail}
             />
             <TextField
               margin="normal"
@@ -63,6 +92,8 @@ export default function LoginView() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={handleChange}
+              value={userPassword}
             />
             <Button
               type="submit"
