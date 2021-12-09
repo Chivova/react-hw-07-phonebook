@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { authSelectors } from '../../redux/auth';
+import { authOperations, authSelectors } from '../../redux/auth';
 
 const styles = {
   container: {
@@ -21,7 +21,7 @@ const styles = {
 
 export default function UserMenu() {
   const name = useSelector(authSelectors.getUsername);
-
+  const dispatch = useDispatch();
   return (
     <div style={styles.container}>
       <Stack direction="row" spacing={2}>
@@ -32,7 +32,12 @@ export default function UserMenu() {
         />
       </Stack>
       <span style={styles.name}>Добро пожаловать, {name}</span>
-      <button type="button" onClick={() => {}}>
+      <button
+        type="button"
+        onClick={() => {
+          dispatch(authOperations.logOut());
+        }}
+      >
         <LogoutIcon fontSize="small" />
       </button>
     </div>
