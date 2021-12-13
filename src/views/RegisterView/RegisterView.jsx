@@ -23,15 +23,13 @@ export default function RegisterView() {
     const { value, name } = e.target;
     switch (name) {
       case 'name':
-        setUserName(value);
-        break;
+        return setUserName(value);
 
       case 'email':
-        setUserEmail(value);
-        break;
+        return setUserEmail(value);
       case 'password':
-        setUserPassword(value);
-        break;
+        return setUserPassword(value);
+
       default:
         return;
     }

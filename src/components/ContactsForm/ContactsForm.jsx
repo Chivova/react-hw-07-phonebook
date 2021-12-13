@@ -1,28 +1,73 @@
+import { useState } from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+
 export default function ContactsForm() {
+  const [name, setName] = useState();
+  const [number, setNumber] = useState();
+
+  const handleChange = e => {
+    const { value, name } = e.target;
+    console.log(value, name);
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+
+      case 'number':
+        setNumber(value);
+        break;
+
+      default:
+        return;
+    }
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log({ name, number });
+  };
+
   return (
-    <form>
-      <h1>Phonebook</h1>
-      <label>
-        <p>Name:</p>
-        <input
+    <div>
+      <Box
+        onSubmit={handleSubmit}
+        component="form"
+        sx={{
+          '& > :not(style)': { m: 1, width: '40ch' },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <TextField
+          label="Name"
+          variant="outlined"
           type="text"
           name="name"
+          // value={name}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
           required
+          onChange={handleChange}
         />
-      </label>
-      <label>
-        <p>Number:</p>
-        <input
+        <TextField
+          inputProps={{
+            inputMode: 'tel',
+            pattern:
+              '+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}',
+            title:
+              'Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +',
+          }}
+          label="Number"
+          variant="outlined"
           type="tel"
           name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+          // value={number}
           required
+          onChange={handleChange}
         />
-      </label>
-      <button type="submit">Add contact</button>
-    </form>
+        <button type="submit">Add contact</button>
+      </Box>
+    </div>
   );
 }
