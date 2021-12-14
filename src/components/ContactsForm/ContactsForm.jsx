@@ -1,14 +1,16 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { contactsOperations } from '../../redux/contacts';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 export default function ContactsForm() {
   const [name, setName] = useState();
   const [number, setNumber] = useState();
+  const dispatch = useDispatch();
 
   const handleChange = e => {
     const { value, name } = e.target;
-    console.log(value, name);
     switch (name) {
       case 'name':
         setName(value);
@@ -26,8 +28,14 @@ export default function ContactsForm() {
   const handleSubmit = e => {
     e.preventDefault();
     console.log({ name, number });
-  };
+    dispatch(contactsOperations.addContact({ name, number }));
 
+    reset();
+  };
+  const reset = () => {
+    setName('');
+    setNumber('');
+  };
   return (
     <div>
       <Box
