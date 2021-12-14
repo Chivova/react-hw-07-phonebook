@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { contactsOperations } from '../../redux/contacts';
+import { contactsOperations } from 'redux/contacts';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
@@ -27,7 +27,6 @@ export default function ContactsForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log({ name, number });
     dispatch(contactsOperations.addContact({ name, number }));
 
     reset();
@@ -61,8 +60,8 @@ export default function ContactsForm() {
         <TextField
           inputProps={{
             inputMode: 'tel',
-            pattern:
-              '+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}',
+            // pattern:
+            //   '+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}',
             title:
               'Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +',
           }}

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { authOperations, authSelectors } from '../../redux/auth';
+import { authOperations, authSelectors } from 'redux/auth';
 
 const styles = {
   container: {

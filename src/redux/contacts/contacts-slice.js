@@ -7,6 +7,7 @@ const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
   extraReducers: {
+    [contactsOperations.fetchContacts.fulfilled]: (_, { payload }) => payload,
     [contactsOperations.addContact.fulfilled]: (state, { payload }) => [
       ...state,
       payload,

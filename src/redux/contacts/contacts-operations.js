@@ -1,16 +1,29 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import * as contactsApi from 'services/contacts-api';
 
-const BASE_URL = 'https://connections-api.herokuapp.com';
+const fetchContacts = createAsyncThunk(
+  'contacts/fetchContacts',
+  async (_, { rejectWithValue }) => {
+    try {
+      const contacts = await contactsApi.fetchContacts();
 
+      return contacts;
+    } catch (error) {
+      rejectWithValue(error.message);
+    }
+  },
+);
 const addContact = createAsyncThunk(
   'contacts/addContact',
-  async ({ name, number }) => {
+  async ({ name, number }, { rejectWithValue }) => {
     try {
-      const { data } = axios.post(`${BASE_URL}/contacts`, { name, number });
-      return data;
-    } catch (error) {}
+      const response = await contactsApi.postContact(name, number);
+
+      return response;
+    } catch (error) {
+      rejectWithValue(error.message);
+    }
   },
 );
 
-export { addContact };
+export { fetchContacts, addContact };
