@@ -70,7 +70,7 @@ export default function ContactsForm() {
           type="tel"
           name="number"
           // value={number}
-          required
+          required={true}
           onChange={handleChange}
         />
         <button type="submit">Add contact</button>

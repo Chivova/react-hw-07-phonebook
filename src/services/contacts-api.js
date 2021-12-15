@@ -8,7 +8,6 @@ async function fetchContacts() {
 
 async function postContact(name, number) {
   const { data } = await axios.post(`${BASE_URL}`, { name, number });
-  console.log(data);
   return data;
 }
 
