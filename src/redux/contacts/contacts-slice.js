@@ -1,3 +1,4 @@
+import { combineReducers } from 'redux'
 import { createSlice } from '@reduxjs/toolkit';
 import { contactsOperations } from '../contacts';
 
@@ -14,5 +15,13 @@ const contactsSlice = createSlice({
     ],
   },
 });
+const contactsFilterSlice = createSlice({
+  name: 'filter',
+  extraReducers: {},
+});
 
-export default contactsSlice.reducer;
+const phonebookReducer = combineReducers({
+contacts: contactsSlice.reducer,
+filter: contactsFilterSlice.reduxer,
+})
+export default phonebookReducer;

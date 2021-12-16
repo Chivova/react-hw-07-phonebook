@@ -1,3 +1,3 @@
 export * as contactsOperations from './contacts-operations';
 export { default as contactsSelectors } from './contacts-selectors';
-export { default as contactsReducer } from './contacts-slice';
+export { default as phonebookReducer } from './contacts-slice';
