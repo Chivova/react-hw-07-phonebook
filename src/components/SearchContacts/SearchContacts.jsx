@@ -1,10 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { TextField } from '@mui/material';
-import {contactsSelectors} from 'redux/contacts'
+import { contactsSelectors, contactsOperations } from 'redux/contacts';
 
 export default function SearchContacts() {
-  const value = useSelector(contactsSelectors.getFilter)
-  const dispatch = useDispatch()
+  const value = useSelector(contactsSelectors.getFilter);
+  const dispatch = useDispatch();
+
   return (
     <TextField
       type="text"
@@ -12,7 +13,9 @@ export default function SearchContacts() {
       variant="standard"
       name="filter"
       value={value}
-      onChange={(e)=> dispatch(e)}
+      onChange={e =>
+        dispatch(contactsOperations.filterContacts(e.target.value))
+      }
     />
   );
 }

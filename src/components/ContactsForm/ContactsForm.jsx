@@ -31,10 +31,12 @@ export default function ContactsForm() {
 
     reset();
   };
+
   const reset = () => {
     setName('');
     setNumber('');
   };
+
   return (
     <div>
       <Box

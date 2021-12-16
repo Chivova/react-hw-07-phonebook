@@ -6,12 +6,14 @@ import IconButton from '@mui/material/IconButton';
 import { contactsSelectors, contactsOperations } from 'redux/contacts';
 
 export default function ContactsList() {
-  const contacts = useSelector(contactsSelectors.getContacts);
+  const contacts = useSelector(contactsSelectors.getVisibileContacts);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(contactsOperations.fetchContacts());
   }, [dispatch]);
+
+  const onDeleteContact = id => dispatch(contactsOperations.deleteContact(id));
 
   return (
     <ul>
@@ -20,7 +22,10 @@ export default function ContactsList() {
           <li key={id}>
             {name}: {number}
             <Stack direction="row" spacing={1}>
-              <IconButton aria-label="delete">
+              <IconButton
+                aria-label="delete"
+                onClick={() => onDeleteContact(id)}
+              >
                 <DeleteIcon color={'error'} />
               </IconButton>
             </Stack>
