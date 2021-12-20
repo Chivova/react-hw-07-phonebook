@@ -13,7 +13,7 @@ async function postContact(name, number) {
 
 async function deleteContactRequest(id) {
   await axios.delete(`${BASE_URL}/${id}`);
-  console.log(id);
+  // console.log(id); +
   return id;
 }
 

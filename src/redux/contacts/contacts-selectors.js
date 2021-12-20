@@ -4,11 +4,14 @@ const getFilter = state => state.phonebook.filter;
 const getVisibileContacts = state => {
   const contacts = getContacts(state);
   const filter = getFilter(state);
+  // if (contacts && filter) {
   const normalizedContacts = filter.toLocaleLowerCase();
 
   return contacts.filter(({ name }) =>
     name.toLocaleLowerCase().includes(normalizedContacts),
   );
+  // }
+  // return contacts;
 };
 const contactsSelectors = {
   getContacts,

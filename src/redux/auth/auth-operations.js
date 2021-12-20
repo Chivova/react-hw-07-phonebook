@@ -14,7 +14,7 @@ const token = {
 
 const registration = createAsyncThunk(
   'auth/registration',
-  async credentials => {
+  async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post(
         `${BASE_URL}/users/signup`,
@@ -22,27 +22,76 @@ const registration = createAsyncThunk(
       );
       token.set(data.token);
       return data;
-    } catch (error) {}
+    } catch (error) {
+      rejectWithValue(error);
+    }
   },
 );
 
-const logIn = createAsyncThunk('auth/login', async credentials => {
-  try {
-    const { data } = await axios.post(`${BASE_URL}/users/login`, credentials);
-    token.set(data.token);
-    return data;
-  } catch (error) {}
-});
+const logIn = createAsyncThunk(
+  'auth/login',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post(`${BASE_URL}/users/login`, credentials);
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  },
+);
 
-const logOut = createAsyncThunk('auth/logOut', async () => {
-  try {
-    await axios.post(`${BASE_URL}/users/logout`);
-    token.unset();
-  } catch (error) {}
-});
-export { registration, logIn, logOut };
+const logOut = createAsyncThunk(
+  'auth/logOut',
+  async (_, { rejectWithValue }) => {
+    try {
+      await axios.post(`${BASE_URL}/users/logout`);
+      token.unset();
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  },
+);
 
-const currentUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
-  const state = thunkAPI.getState()
-  const persisteToken = state.auth.token
-});
+const currentUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, { getState, rejectWithValue }) => {
+    const state = getState();
+    const persisteToken = state.auth.token;
+
+    if (persisteToken === null) {
+      return rejectWithValue();
+    }
+    token.set(persisteToken);
+
+    try {
+      const { data } = await axios.get(`${BASE_URL}/users/current`);
+
+      return data;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  },
+);
+
+// расписанный вариант откуда взялся getState
+// const currentUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
+//   console.log(thunkAPI);
+//   const state = thunkAPI.getState();
+//   const persisteToken = state.auth.token;
+
+//   if (persisteToken === null) {
+//     return thunkAPI.rejectWithValue();
+//   }
+//   token.set(persisteToken);
+
+//   try {
+//     const { data } = await axios.get(`${BASE_URL}/users/current`);
+
+//     return data;
+//   } catch (error) {
+//     thunkAPI.rejectWithValue(error);
+//   }
+// });
+
+export { registration, logIn, logOut, currentUser };
