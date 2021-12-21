@@ -43,7 +43,7 @@ export default function ContactsForm() {
         onSubmit={handleSubmit}
         component="form"
         sx={{
-          '& > :not(style)': { m: 1, width: '40ch' },
+          '& > :not(style)': { m: 1, width: '30ch' },
         }}
         noValidate
         autoComplete="off"

@@ -5,21 +5,38 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import { contactsSelectors, contactsOperations } from 'redux/contacts';
 
+const styles = {
+  contactsList: {
+    width: '350px',
+    listStyle: 'none',
+  },
+  contactsItem: {
+    display: 'flex',
+    flexDirection: 'row-reverse',
+    justifyContent: 'flex-end',
+    alignItems: 'baseline',
+    marginBottom: '5px',
+    fontSize: '18px',
+    fontWeight: '500',
+    color: ' #2196f3',
+  },
+};
+
 export default function ContactsList() {
   const contacts = useSelector(contactsSelectors.getVisibileContacts);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(contactsOperations.fetchContacts());
-  }, [dispatch]);
+  }, [dispatch, contacts]);
 
   const onDeleteContact = id => dispatch(contactsOperations.deleteContact(id));
 
   return (
-    <ul>
+    <ul styles={styles.contactsList}>
       {contacts &&
         contacts.map(({ id, name, number }) => (
-          <li key={id}>
+          <li styles={styles.contactsItem} key={id}>
             {name}: {number}
             <Stack direction="row" spacing={1}>
               <IconButton
