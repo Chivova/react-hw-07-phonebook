@@ -5,9 +5,10 @@ import { useDispatch } from 'react-redux';
 import Container from './components/Container';
 import Header from 'components/Header';
 import HomeView from './views/HomeView';
-import LoginView from './views/LoginView';
+// import LoginView from './views/LoginView';
 import RegisterView from './views/RegisterView';
-import PrivateRout from 'components/Routes/PrivateRout';
+import PrivateRoute from 'components/Routes/PrivateRoute';
+import PublicRoute from 'components/Routes/PublicRoute';
 import 'modern-normalize/modern-normalize.css';
 import { authOperations } from 'redux/auth';
 
@@ -30,8 +31,8 @@ function App() {
           path="/contacts"
           element={isLoggedIn ? <ContactsView /> : <Navigate to="/login" />}
         /> */}
-        <Route exact path="/contacts" element={<PrivateRout />} />
-        <Route exact path="/login" element={<LoginView />} />
+        <Route exact path="/contacts" element={<PrivateRoute />} />
+        <Route exact path="/login" element={<PublicRoute restricted />} />
         <Route exact path="/registration" element={<RegisterView />} />
       </Routes>
     </Container>
