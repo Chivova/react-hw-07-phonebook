@@ -1,12 +1,21 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { contactsOperations } from 'redux/contacts';
+
+import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
+const styles = {
+  formBox: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+};
 export default function ContactsForm() {
-  const [name, setName] = useState();
-  const [number, setNumber] = useState();
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
   const dispatch = useDispatch();
 
   const handleChange = e => {
@@ -40,6 +49,7 @@ export default function ContactsForm() {
   return (
     <div>
       <Box
+        style={styles.formBox}
         onSubmit={handleSubmit}
         component="form"
         sx={{
@@ -75,7 +85,10 @@ export default function ContactsForm() {
           required={true}
           onChange={handleChange}
         />
-        <button type="submit">Add contact</button>
+
+        <Button size="medium" type="submit" variant="contained">
+          Add Contact
+        </Button>
       </Box>
     </div>
   );

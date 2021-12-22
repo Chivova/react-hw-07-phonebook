@@ -6,10 +6,9 @@ const styles = {
   container: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
   },
-  title: { fontSize: '42px', textAlign: 'center' },
+  title: { fontSize: '42px', textAlign: 'center', color: '#1976d2' },
 };
 
 export default function ContactsView() {
