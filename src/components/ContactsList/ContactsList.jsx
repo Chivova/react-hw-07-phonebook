@@ -14,11 +14,13 @@ const styles = {
     display: 'flex',
     flexDirection: 'row-reverse',
     justifyContent: 'flex-end',
-    alignItems: 'baseline',
+    alignItems: 'center',
     marginBottom: '5px',
     fontSize: '18px',
     fontWeight: '500',
-    color: ' #2196f3',
+  },
+  contactsButton: {
+    marginRight: '15px',
   },
 };
 
@@ -33,10 +35,10 @@ export default function ContactsList() {
   const onDeleteContact = id => dispatch(contactsOperations.deleteContact(id));
 
   return (
-    <ul styles={styles.contactsList}>
+    <ul style={styles.contactsList}>
       {contacts &&
         contacts.map(({ id, name, number }) => (
-          <li styles={styles.contactsItem} key={id}>
+          <li style={styles.contactsItem} key={id}>
             {name}: {number}
             <Stack direction="row" spacing={1}>
               <IconButton

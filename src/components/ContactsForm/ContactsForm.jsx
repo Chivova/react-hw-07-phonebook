@@ -12,6 +12,9 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
   },
+  inputText: {
+    fontWeight: '800',
+  },
 };
 export default function ContactsForm() {
   const [name, setName] = useState('');
@@ -59,6 +62,7 @@ export default function ContactsForm() {
         autoComplete="off"
       >
         <TextField
+          style={styles.inputText}
           label="Name"
           variant="outlined"
           type="text"
@@ -70,6 +74,7 @@ export default function ContactsForm() {
           onChange={handleChange}
         />
         <TextField
+          style={styles.inputText}
           inputProps={{
             inputMode: 'tel',
             // pattern:

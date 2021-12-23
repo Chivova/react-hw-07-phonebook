@@ -12,7 +12,7 @@ import { authOperations } from '../../redux/auth';
 const theme = createTheme();
 const styles = {
   title: {
-    textAlign: 'centre',
+    textAlign: 'center',
   },
 };
 
@@ -53,12 +53,12 @@ export default function LoginView() {
 
   return (
     <ThemeProvider theme={theme}>
-      <h1 style={styles.title}>Log In Page</h1>
+      <h2 style={styles.title}>Log In Page</h2>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 4,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',

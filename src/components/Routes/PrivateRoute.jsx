@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { authSelectors } from 'redux/auth';
-import ContactsView from 'views/ContactsView';
 
-export default function PrivateRoute() {
+export default function PrivateRoute({ children, redirectTo }) {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-  return isLoggedIn ? <ContactsView /> : <Navigate to="/login" />;
+
+  return isLoggedIn ? children : <Navigate to={redirectTo} />;
 }

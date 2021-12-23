@@ -12,6 +12,11 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme();
+const styles = {
+  title: {
+    textAlign: 'center',
+  },
+};
 
 export default function RegisterView() {
   const dispatch = useDispatch();
@@ -56,7 +61,7 @@ export default function RegisterView() {
 
   return (
     <div>
-      <h2>Registration Page</h2>
+      <h2 style={styles.title}>Registration Page</h2>
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
