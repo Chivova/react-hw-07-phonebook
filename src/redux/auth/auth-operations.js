@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
 
 const BASE_URL = 'https://connections-api.herokuapp.com';
 
@@ -74,6 +74,7 @@ const currentUser = createAsyncThunk(
   },
 );
 
+const registerUserRejected = createAction('auth/registerUserRejected');
 // расписанный вариант откуда взялся getState
 // const currentUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
 //   console.log(thunkAPI);
@@ -94,4 +95,4 @@ const currentUser = createAsyncThunk(
 //   }
 // });
 
-export { registration, logIn, logOut, currentUser };
+export { registration, logIn, logOut, currentUser, registerUserRejected };

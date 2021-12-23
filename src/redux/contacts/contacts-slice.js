@@ -25,8 +25,43 @@ const contactsFilterSlice = createSlice({
   },
 });
 
+const IsLoadingSlice = createSlice({
+  name: 'loading',
+  initialState: false,
+  extraReducers: {
+    [contactsOperations.fetchContacts.pending]: () => true,
+    [contactsOperations.fetchContacts.fulfilled]: () => false,
+    [contactsOperations.fetchContacts.rejected]: () => false,
+
+    [contactsOperations.addContact.pending]: () => true,
+    [contactsOperations.addContact.fulfilled]: () => false,
+    [contactsOperations.addContact.rejected]: () => false,
+
+    [contactsOperations.deleteContact.pending]: () => true,
+    [contactsOperations.deleteContact.fulfilled]: () => false,
+    [contactsOperations.deleteContact.rejected]: () => false,
+  },
+});
+
+const errorSlice = createSlice({
+  name: 'error',
+  initialState: null,
+  extraReducers: {
+    [contactsOperations.fetchContacts.rejected]: (_, { payload }) => payload,
+    [contactsOperations.fetchContacts.pending]: () => null,
+
+    [contactsOperations.addContact.rejected]: (_, { payload }) => payload,
+    [contactsOperations.addContact.pending]: () => null,
+
+    [contactsOperations.deleteContact.rejected]: (_, { payload }) => payload,
+    [contactsOperations.deleteContact.pending]: () => null,
+  },
+});
+
 const phonebookReducer = combineReducers({
   contacts: contactsSlice.reducer,
   filter: contactsFilterSlice.reducer,
+  isLoading: IsLoadingSlice.reducer,
+  error: errorSlice.reducer,
 });
 export default phonebookReducer;
