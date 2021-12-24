@@ -1,7 +1,7 @@
 import { useEffect, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-// import { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import Container from './components/Container';
 import Header from 'components/Header';
 import PrivateRoute from 'components/Routes/PrivateRoute';
@@ -32,7 +32,7 @@ function App() {
 
   return (
     <Container>
-      {/* <Toaster position="top-center" /> */}
+      <Toaster position="top-center" />
       {!isRefreshCurrentUser && (
         <>
           <Header />

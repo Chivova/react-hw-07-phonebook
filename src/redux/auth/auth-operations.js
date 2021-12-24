@@ -75,6 +75,7 @@ const currentUser = createAsyncThunk(
 );
 
 const registerUserRejected = createAction('auth/registerUserRejected');
+const userLogInRejected = createAction('auth/userLogInRejected');
 // расписанный вариант откуда взялся getState
 // const currentUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
 //   console.log(thunkAPI);
@@ -95,4 +96,11 @@ const registerUserRejected = createAction('auth/registerUserRejected');
 //   }
 // });
 
-export { registration, logIn, logOut, currentUser, registerUserRejected };
+export {
+  registration,
+  logIn,
+  logOut,
+  currentUser,
+  registerUserRejected,
+  userLogInRejected,
+};
