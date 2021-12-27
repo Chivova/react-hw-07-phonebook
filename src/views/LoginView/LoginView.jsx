@@ -17,6 +17,7 @@ const styles = {
 
 export default function LoginView() {
   const isUserLogInRejected = useSelector(authSelectors.userLogInRejected);
+  console.log(isUserLogInRejected);
   const dispatch = useDispatch();
 
   const [userEmail, setUserEmail] = useState('');

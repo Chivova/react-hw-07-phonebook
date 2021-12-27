@@ -24,16 +24,15 @@ export default function RegisterView() {
   const isRegisterUserRejected = useSelector(
     authSelectors.registerUserRejected,
   );
-  console.log(isRegisterUserRejected);
   const dispatch = useDispatch();
 
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
 
-  useEffect(() => {
-    dispatch(authOperations.registerUserRejected());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(authOperations.registerUserRejected());
+  // }, [dispatch]);
 
   const handleChange = e => {
     const { value, name } = e.target;

@@ -18,9 +18,9 @@ const authSlice = createSlice({
       state.user = payload.user;
       state.token = payload.token;
       state.isLoggedIn = true;
+      state.registerUserRejected = false;
     },
     [authOperations.registration.rejected](state, _) {
-      console.log(state.registerUserRejected);
       state.registerUserRejected = true;
     },
     [authOperations.registerUserRejected](state, _) {
@@ -31,14 +31,15 @@ const authSlice = createSlice({
       state.user = payload.user;
       state.token = payload.token;
       state.isLoggedIn = true;
-    },
-    [authOperations.logIn.rejected](state, _) {
-      console.log('LogInRejected', state.userLogInRejected);
-      state.userLogInRejected = true;
-    },
-    [authOperations.userLogInRejected](state, _) {
       state.userLogInRejected = false;
     },
+
+    [authOperations.logIn.rejected](state, _) {
+      state.userLogInRejected = true;
+    },
+    // [authOperations.userLogInRejected](state, _) {
+    //   state.userLogInRejected = false;
+    // },
     [authOperations.logOut.fulfilled](state) {
       state.user = { name: null, email: null };
       state.token = null;
