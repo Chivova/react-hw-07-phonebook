@@ -9,7 +9,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import { toast } from 'react-hot-toast';
+
+import { Toaster, toast } from 'react-hot-toast';
 
 import 'react-notifications/lib/notifications.css';
 
@@ -30,9 +31,9 @@ export default function RegisterView() {
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
 
-  // useEffect(() => {
-  //   dispatch(authOperations.registerUserRejected());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(authOperations.registerUserRejected());
+  }, [dispatch]);
 
   const handleChange = e => {
     const { value, name } = e.target;
@@ -71,7 +72,9 @@ export default function RegisterView() {
 
   return (
     <>
-      {isRegisterUserRejected && <h2>try again</h2>}
+      <Toaster position="top-center" />
+      {isRegisterUserRejected &&
+        toast.error(`Error, something went wrong, please try again  `)}
       <div>
         <h2 style={styles.title}>Registration Page</h2>
         <ThemeProvider theme={theme}>

@@ -23,7 +23,7 @@ const registration = createAsyncThunk(
       token.set(data.token);
       return data;
     } catch (error) {
-      rejectWithValue(error);
+      return rejectWithValue(error.message); // зачем нужен return ????
     }
   },
 );
@@ -36,7 +36,7 @@ const logIn = createAsyncThunk(
       token.set(data.token);
       return data;
     } catch (error) {
-      rejectWithValue(error);
+      return rejectWithValue(error); // зачем нужен return ????
     }
   },
 );

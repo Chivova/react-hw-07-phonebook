@@ -32,7 +32,7 @@ function App() {
 
   return (
     <Container>
-      <Toaster position="top-center" />
+      {/* <Toaster position="top-center" /> */}
       {!isRefreshCurrentUser && (
         <>
           <Header />
