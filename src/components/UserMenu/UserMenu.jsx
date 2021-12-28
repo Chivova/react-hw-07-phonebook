@@ -12,10 +12,20 @@ const styles = {
   },
   avatar: {
     marginRight: 4,
+    cursor: 'pointer',
   },
   name: {
     fontWeight: 700,
     marginRight: 12,
+  },
+  button: {
+    cursor: 'pointer',
+    '&:hover': {
+      background: 'blue',
+    },
+    icon: {
+      fill: 'blue',
+    },
   },
 };
 
@@ -33,12 +43,13 @@ export default function UserMenu() {
       </Stack>
       <span style={styles.name}>Добро пожаловать, {name}</span>
       <button
+        style={styles.button}
         type="button"
         onClick={() => {
           dispatch(authOperations.logOut());
         }}
       >
-        <LogoutIcon fontSize="small" />
+        <LogoutIcon style={styles.icon} fontSize="small" />
       </button>
     </div>
   );

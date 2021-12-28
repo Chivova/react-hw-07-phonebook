@@ -27,8 +27,7 @@ export default function AuthNav() {
       </NavLink>
       <NavLink
         to="/registration"
-        style={styles.link}
-        activestyle={styles.activeLink}
+        style={({ isActive }) => (isActive ? styles.activeLink : styles.link)}
       >
         Registration
       </NavLink>
