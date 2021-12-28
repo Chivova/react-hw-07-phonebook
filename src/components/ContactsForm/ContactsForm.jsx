@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { contactsOperations } from 'redux/contacts';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { contactsOperations, contactsSelectors } from 'redux/contacts';
+import { toast } from 'react-hot-toast';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -20,6 +20,7 @@ export default function ContactsForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
+  const contacts = useSelector(contactsSelectors.getContacts);
 
   const handleChange = e => {
     const { value, name } = e.target;
@@ -39,6 +40,18 @@ export default function ContactsForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (name || number === '') {
+      return toast.error(`Please, fill in the blank fields`);
+    } else if (
+      contacts.find(
+        contact =>
+          contact.name.toLocaleLowerCase() === name.toLocaleLowerCase(),
+      )
+    ) {
+      return toast.error(`Contact ${name} is already in contacts `);
+    } else if (contacts.find(contact => contact.number === number)) {
+      return toast.error(`Contact ${number} is already in contacts `);
+    }
     dispatch(contactsOperations.addContact({ name, number }));
 
     reset();
@@ -68,20 +81,11 @@ export default function ContactsForm() {
           type="text"
           name="name"
           value={name}
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
           required
           onChange={handleChange}
         />
         <TextField
           style={styles.inputText}
-          inputProps={{
-            inputMode: 'tel',
-            // pattern:
-            //   '+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}',
-            title:
-              'Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +',
-          }}
           label="Number"
           variant="outlined"
           type="tel"

@@ -36,7 +36,7 @@ const logIn = createAsyncThunk(
       token.set(data.token);
       return data;
     } catch (error) {
-      return rejectWithValue(error); // зачем нужен return ????
+      return rejectWithValue(error.message); // зачем нужен return ????
     }
   },
 );

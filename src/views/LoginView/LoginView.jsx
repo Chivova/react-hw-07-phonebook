@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { authOperations, authSelectors } from '../../redux/auth';
+import PositionedSnackbar from '../../components/Snackbar/Snackbar';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { authOperations, authSelectors } from '../../redux/auth';
 
 const theme = createTheme();
 const styles = {
@@ -17,7 +18,6 @@ const styles = {
 
 export default function LoginView() {
   const isUserLogInRejected = useSelector(authSelectors.userLogInRejected);
-  console.log(isUserLogInRejected);
   const dispatch = useDispatch();
 
   const [userEmail, setUserEmail] = useState('');
@@ -58,7 +58,14 @@ export default function LoginView() {
 
   return (
     <>
-      {isUserLogInRejected && <h2>try again</h2>}
+      {isUserLogInRejected && (
+        <PositionedSnackbar
+          element={'userLogInRejected'}
+          message={
+            'Error, something went wrong, please check your email or password'
+          }
+        />
+      )}
       <ThemeProvider theme={theme}>
         <h2 style={styles.title}>Log In Page</h2>
         <Container component="main" maxWidth="xs">

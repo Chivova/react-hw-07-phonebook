@@ -31,7 +31,7 @@ const authSlice = createSlice({
       state.user = payload.user;
       state.token = payload.token;
       state.isLoggedIn = true;
-      state.userLogInRejected = false;
+      // state.userLogInRejected = false;
     },
 
     [authOperations.logIn.rejected](state, _) {

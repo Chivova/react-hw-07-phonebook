@@ -9,8 +9,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-import { Toaster, toast } from 'react-hot-toast';
+import PositionedSnackbar from '../../components/Snackbar/Snackbar';
 
 import 'react-notifications/lib/notifications.css';
 
@@ -72,9 +71,12 @@ export default function RegisterView() {
 
   return (
     <>
-      <Toaster position="top-center" />
-      {isRegisterUserRejected &&
-        toast.error(`Error, something went wrong, please try again  `)}
+      {isRegisterUserRejected && (
+        <PositionedSnackbar
+          element={'registerUserRejected'}
+          message={`Error, something went wrong, please try again`}
+        />
+      )}
       <div>
         <h2 style={styles.title}>Registration Page</h2>
         <ThemeProvider theme={theme}>
