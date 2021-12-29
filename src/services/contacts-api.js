@@ -13,8 +13,11 @@ async function postContact(name, number) {
 
 async function deleteContactRequest(id) {
   await axios.delete(`${BASE_URL}/${id}`);
-  // console.log(id); +
   return id;
 }
 
-export { fetchContacts, postContact, deleteContactRequest };
+async function fetchUpdateContact(id, contact) {
+  const { data } = await axios.put(`${BASE_URL}/${id}`, contact);
+  return data;
+}
+export { fetchContacts, postContact, deleteContactRequest, fetchUpdateContact };

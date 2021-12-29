@@ -38,6 +38,28 @@ const deleteContact = createAsyncThunk(
   },
 );
 
-const filterContacts = createAction('contacts/filterContacts');
+const updateContact = createAsyncThunk(
+  'contacts/updateContact',
+  async ({ id, contact }, { rejectWithValue }) => {
+    try {
+      const response = await contactsApi.fetchUpdateContact(id, contact);
+      return response;
+    } catch (error) {
+      rejectWithValue(error.message);
+    }
+  },
+);
 
-export { fetchContacts, addContact, deleteContact, filterContacts };
+const filterContacts = createAction('contacts/filterContacts');
+const openModal = createAction('contacts/openModal');
+const closeModal = createAction('contacts/closeModal');
+
+export {
+  fetchContacts,
+  addContact,
+  deleteContact,
+  updateContact,
+  filterContacts,
+  openModal,
+  closeModal,
+};

@@ -2,6 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 
 const getContacts = state => state.phonebook.contacts;
 const getFilter = state => state.phonebook.filter;
+const getIsModalOpen = state => state.phonebook.isOpenModal;
 
 const getVisibileContacts = createSelector(
   [getContacts, getFilter],
@@ -22,6 +23,7 @@ const contactsSelectors = {
   getContacts,
   getFilter,
   getVisibileContacts,
+  getIsModalOpen,
 };
 
 export default contactsSelectors;

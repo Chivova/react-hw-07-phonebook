@@ -60,10 +60,19 @@ const errorSlice = createSlice({
   },
 });
 
+const editModal = createSlice({
+  name: 'modal',
+  initialState: false,
+  extraReducers: {
+    [contactsOperations.openModal]: () => true,
+    [contactsOperations.closeModal]: () => false,
+  },
+});
 const phonebookReducer = combineReducers({
   contacts: contactsSlice.reducer,
   filter: contactsFilterSlice.reducer,
   isLoading: IsLoadingSlice.reducer,
   error: errorSlice.reducer,
+  isOpenModal: editModal.reducer,
 });
 export default phonebookReducer;
