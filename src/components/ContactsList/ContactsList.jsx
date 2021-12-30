@@ -36,9 +36,12 @@ export default function ContactsList() {
   }, [dispatch]);
 
   const onDeleteContact = id => dispatch(contactsOperations.deleteContact(id));
+  const onUpdateContact = id => dispatch(contactsOperations.updateContact(id));
+
   const handleOpenModal = () => {
     dispatch(contactsOperations.openModal());
   };
+
   return (
     <Fragment>
       <ul style={styles.contactsList}>
@@ -56,7 +59,8 @@ export default function ContactsList() {
                 <IconButton
                   sx={{ ml: 0 }}
                   aria-label="edit"
-                  onClick={handleOpenModal}
+                  // onClick={handleOpenModal}
+                  onClick={() => onUpdateContact(id)}
                 >
                   <EditIcon color={'primary'} />
                 </IconButton>

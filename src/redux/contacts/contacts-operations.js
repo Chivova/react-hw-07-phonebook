@@ -30,6 +30,7 @@ const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async (id, { rejectWithValue }) => {
     try {
+      console.log(id);
       const response = await contactsApi.deleteContactRequest(id);
       return response;
     } catch (error) {
@@ -42,6 +43,7 @@ const updateContact = createAsyncThunk(
   'contacts/updateContact',
   async ({ id, contact }, { rejectWithValue }) => {
     try {
+      console.log(id);
       const response = await contactsApi.fetchUpdateContact(id, contact);
       return response;
     } catch (error) {

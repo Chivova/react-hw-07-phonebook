@@ -2,10 +2,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { useSelector, useDispatch } from 'react-redux';
 import { contactsOperations, contactsSelectors } from 'redux/contacts';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import SaveAsIcon from '@mui/icons-material/SaveAs';
 import EditContact from 'components/EditContact/EditContact';
 
 const style = {
@@ -30,6 +28,7 @@ export default function EditModal() {
       <Modal
         open={isOpenModal}
         onClose={handleCloseModal}
+        onSubmit={handleCloseModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -38,9 +37,6 @@ export default function EditModal() {
             Edit contact
           </Typography>
           <EditContact />
-          <Button onClick={handleCloseModal} onSubmit={handleCloseModal}>
-            <SaveAsIcon color="info" />
-          </Button>
         </Box>
       </Modal>
     </div>

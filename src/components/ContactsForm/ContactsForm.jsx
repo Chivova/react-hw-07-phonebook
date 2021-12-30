@@ -40,7 +40,7 @@ export default function ContactsForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (name || number === '') {
+    if (name === '' || number === '') {
       return toast.error(`Please, fill in the blank fields`);
     } else if (
       contacts.find(
