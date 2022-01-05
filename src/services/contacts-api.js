@@ -16,8 +16,18 @@ async function deleteContactRequest(id) {
   return id;
 }
 
+async function fetchGetIdContact(id) {
+  await axios.get(`${BASE_URL}/${id}`);
+  return id;
+}
 async function fetchUpdateContact(id, contact) {
-  const { data } = await axios.put(`${BASE_URL}/${id}`, contact);
+  const { data } = await axios.get(`${BASE_URL}/${id}`, contact);
   return data;
 }
-export { fetchContacts, postContact, deleteContactRequest, fetchUpdateContact };
+export {
+  fetchContacts,
+  postContact,
+  deleteContactRequest,
+  fetchGetIdContact,
+  fetchUpdateContact,
+};

@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import SaveAsIcon from '@mui/icons-material/SaveAs';
 import { contactsOperations } from 'redux/contacts';
 
-export default function EditContact() {
+export default function EditContact({ id }) {
   const [updateName, setUpdateName] = useState('');
   const [updateNumber, setUpdateNumber] = useState('');
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ export default function EditContact() {
   const handleSubmit = e => {
     e.preventDefault();
     const data = {
-      // contactId,
+      contactId: id,
       contact: {
         name: updateName,
         number: updateNumber,

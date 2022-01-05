@@ -36,10 +36,10 @@ export default function ContactsList() {
   }, [dispatch]);
 
   const onDeleteContact = id => dispatch(contactsOperations.deleteContact(id));
-  const onUpdateContact = id => dispatch(contactsOperations.updateContact(id));
 
-  const handleOpenModal = () => {
+  const handleOpenModal = id => {
     dispatch(contactsOperations.openModal());
+    dispatch(contactsOperations.getIdContact(id));
   };
 
   return (
@@ -59,8 +59,7 @@ export default function ContactsList() {
                 <IconButton
                   sx={{ ml: 0 }}
                   aria-label="edit"
-                  // onClick={handleOpenModal}
-                  onClick={() => onUpdateContact(id)}
+                  onClick={() => handleOpenModal(id)}
                 >
                   <EditIcon color={'primary'} />
                 </IconButton>

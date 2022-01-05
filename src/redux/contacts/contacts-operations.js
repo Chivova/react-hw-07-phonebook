@@ -30,7 +30,6 @@ const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async (id, { rejectWithValue }) => {
     try {
-      console.log(id);
       const response = await contactsApi.deleteContactRequest(id);
       return response;
     } catch (error) {
@@ -39,19 +38,32 @@ const deleteContact = createAsyncThunk(
   },
 );
 
-const updateContact = createAsyncThunk(
-  'contacts/updateContact',
-  async ({ id, contact }, { rejectWithValue }) => {
+const getIdContact = createAsyncThunk(
+  'contacts/getIdContact',
+  async (id, { rejectWithValue }) => {
     try {
       console.log(id);
-      const response = await contactsApi.fetchUpdateContact(id, contact);
+      const response = await contactsApi.fetchGetIdContact(id);
+      console.log(response);
       return response;
     } catch (error) {
       rejectWithValue(error.message);
     }
   },
 );
-
+const updateContact = createAsyncThunk(
+  'contacts/updateContact',
+  async ({ id, contact }, { rejectWithValue }) => {
+    try {
+      console.log(id);
+      const response = await contactsApi.fetchUpdateContact(id, contact);
+      console.log(response);
+      return response;
+    } catch (error) {
+      rejectWithValue(error.message);
+    }
+  },
+);
 const filterContacts = createAction('contacts/filterContacts');
 const openModal = createAction('contacts/openModal');
 const closeModal = createAction('contacts/closeModal');
@@ -60,6 +72,7 @@ export {
   fetchContacts,
   addContact,
   deleteContact,
+  getIdContact,
   updateContact,
   filterContacts,
   openModal,

@@ -2,7 +2,7 @@
   "name": "react-hw-07-phonebook",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://chivova.github.io/react-hw-07-phonebook",
+  "homepage": "https://chivova.github.io/",
   "dependencies": {
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
