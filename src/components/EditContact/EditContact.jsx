@@ -4,13 +4,14 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SaveAsIcon from '@mui/icons-material/SaveAs';
-import { contactsOperations } from 'redux/contacts';
+import { contactsOperations, contactsSelectors } from 'redux/contacts';
 
-export default function EditContact({ id }) {
+export default function EditContact() {
   const [updateName, setUpdateName] = useState('');
   const [updateNumber, setUpdateNumber] = useState('');
   const dispatch = useDispatch();
-  // const contactId = useSelector(contactsOperations.getContactId);
+  const contactId = useSelector(contactsSelectors.getContactId);
+  console.log(contactId);
   // const contacts = useSelector(contactsOperations.getContacts);
   // const contact = contacts.find(contact => contact.id === contactId);
 
@@ -31,7 +32,7 @@ export default function EditContact({ id }) {
   const handleSubmit = e => {
     e.preventDefault();
     const data = {
-      contactId: id,
+      id: contactId,
       contact: {
         name: updateName,
         number: updateNumber,

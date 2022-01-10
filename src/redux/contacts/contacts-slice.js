@@ -16,8 +16,10 @@ const contactsSlice = createSlice({
     // }, // так не работает ????????
     [contactsOperations.deleteContact.fulfilled]: (state, { payload }) =>
       state.filter(({ id }) => id !== payload),
-    [contactsOperations.getIdContact.fulfilled]: (_, { payload }) => payload,
-    [contactsOperations.updateContact.fulfilled]: (_, { payload }) => payload,
+    [contactsOperations.updateContact.fulfilled]: (state, { payload }) => [
+      ...state,
+      payload,
+    ],
   },
 });
 
@@ -61,7 +63,13 @@ const errorSlice = createSlice({
     [contactsOperations.deleteContact.pending]: () => null,
   },
 });
-
+const editContactId = createSlice({
+  name: 'edit',
+  initialState: null,
+  extraReducers: {
+    [contactsOperations.getIdContact.fulfilled]: (_, { payload }) => payload,
+  },
+});
 const editModal = createSlice({
   name: 'modal',
   initialState: false,
@@ -75,6 +83,7 @@ const phonebookReducer = combineReducers({
   filter: contactsFilterSlice.reducer,
   isLoading: IsLoadingSlice.reducer,
   error: errorSlice.reducer,
+  contactId: editContactId.reducer,
   isOpenModal: editModal.reducer,
 });
 export default phonebookReducer;
