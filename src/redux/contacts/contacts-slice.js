@@ -16,10 +16,12 @@ const contactsSlice = createSlice({
     // }, // так не работает ????????
     [contactsOperations.deleteContact.fulfilled]: (state, { payload }) =>
       state.filter(({ id }) => id !== payload),
-    [contactsOperations.updateContact.fulfilled]: (state, { payload }) => [
-      ...state,
-      payload,
-    ],
+    [contactsOperations.updateContact.fulfilled]: (state, { payload }) => {
+      const contactIndex = state.findIndex(({ id }) => id === payload.id);
+      const updatedState = [...state];
+      updatedState.splice(contactIndex, 1, payload);
+      return updatedState;
+    },
   },
 });
 

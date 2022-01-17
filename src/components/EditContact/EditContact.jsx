@@ -39,7 +39,6 @@ export default function EditContact() {
       },
     };
     dispatch(contactsOperations.updateContact(data));
-    console.log(data);
   };
   return (
     <Box

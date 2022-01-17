@@ -40,6 +40,7 @@ export default function ContactsList() {
   const handleOpenModal = id => {
     dispatch(contactsOperations.openModal());
     dispatch(contactsOperations.getIdContact(id));
+    // dispatch(contactsOperations.updateContact(id));
   };
 
   return (

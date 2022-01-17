@@ -21,7 +21,6 @@ async function fetchGetIdContact(id) {
 }
 
 async function fetchUpdateContact(id, contact) {
-  console.log(id);
   const { data } = await axios.patch(`${BASE_URL}/${id}`, contact);
   return data;
 }

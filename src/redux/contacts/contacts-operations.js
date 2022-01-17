@@ -56,7 +56,6 @@ const updateContact = createAsyncThunk(
     try {
       console.log(id);
       const response = await contactsApi.fetchUpdateContact(id, contact);
-      console.log(response);
       return response;
     } catch (error) {
       rejectWithValue(error.message);
